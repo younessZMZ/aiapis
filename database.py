@@ -2,13 +2,15 @@ import os
 
 from dotenv import load_dotenv
 from sqlmodel import SQLModel, Field, Session, create_engine
+from logger.starter import logger
 
 load_dotenv()
 
 
 DATABASE_URL = os.getenv("DATABASE_URL")
+logger.warning(f"Database url : {DATABASE_URL}")
 
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL)
 
 
 class Task(SQLModel, table=True):
